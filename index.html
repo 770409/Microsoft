@@ -12,6 +12,87 @@
     <link rel="stylesheet" href="./Microsoft.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 </head>
+<style>
+    .pause {
+            position: absolute;
+
+            background-image: url(./img/pause-0.png);
+            background-size: cover;
+            width: 20px;
+            height: 20px;
+            top: 0%;
+            left: 55%;
+
+        }
+
+        .pause:hover+.pause-text {
+            display: block;
+        }
+
+        .pause:hover {
+            /* background-color: thistle; */
+            border: 2px solid white;
+            filter:invert(100%);
+            background-color:white;
+            
+           
+        }
+
+        .pause-text {
+            display: none;
+            z-index: 99;
+            position: absolute;
+            width: 80px;
+            height: 20px;
+            color: black;
+            top: -10%;
+            left:60%;
+            border: 1px solid grey;
+            background-color: white;
+            font-size: 12px;
+            
+        }
+
+
+        .play {
+            display: none;
+            position: absolute;
+
+            background-image: url(./img/play-1.png);
+            background-size: cover;
+            width: 20px;
+            height: 20px;
+            top: 0%;
+            left: 55%;
+
+        }
+
+        .play:hover+.play-text {
+            display: block;
+        }
+
+        .play:hover {
+            /* background-color: thistle; */
+            border: 2px solid white;
+            filter:invert(100%);
+            background-color:white;
+        }
+
+        .play-text {
+            display: none;
+            z-index: 99;
+            position: absolute;
+            width: 80px;
+            height: 20px;
+            color: black;
+            top: -10%;
+            left: 60%;
+            border: 1px solid grey;
+            background-color: white;
+            font-size: 12px;
+        }
+
+</style>
 
 <body>
     <div class="all">
@@ -536,22 +617,24 @@
             slidesPerView: 1,
             spaceBetween: 30,
             loop: true,
-            // autoplay: true,
+            autoplay: true,
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
                 renderBullet: function (index, className) {
                     if (index == count - 1) {
                         return `
-                        <span class="dot swiper-pagination-bullet"></span>
-                      <div class="pause">||</div>
+                     <span class="dot swiper-pagination-bullet"></span>
+                      <span class="dot swiper-pagination-bullet"></span>
+                      <div class="pause"></div>
                       <span class="pause-text">暫停投影片</span>
                       
-                      <div class="play">⊳</div>
-                      <span class="play">播放投影片</span>
+                      <div class="play"></div>
+                      <span class="play-text">播放投影片</span>
                       `;
                     }
-                    return `<span class=dot swiper-pagination-bullet></span>`;
+                    return `<span class=dot swiper-pagination-bullet></span>
+                    <span class=dot swiper-pagination-bullet></span>`;
                 },
 
             },
@@ -574,8 +657,8 @@
         });
         playBnt.addEventListener('click', function () {
             swiper.autoplay.start();
-            playBnt.style.display = "none";
             pauseBnt.style.display = "block";
+            playBnt.style.display = "none";
 
         });
 
